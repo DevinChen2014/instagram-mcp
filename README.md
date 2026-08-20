@@ -92,7 +92,7 @@ For clients that support authenticated `streamable-http`, use the hosted endpoin
 }
 ```
 
-A ready-to-copy example is available in [`examples/streamable_http_config.json`](examples/streamable_http_config.json).
+A configuration template is available in [`examples/streamable_http_config.json`](examples/streamable_http_config.json). Replace `<SOCIALDATAX_API_KEY>` with your API Key before use.
 
 For command/stdio-only MCP clients, use `mcp-remote`:
 
