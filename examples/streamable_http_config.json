@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "socialdatax-instagram": {
+      "type": "streamable_http",
+      "url": "https://mcp.socialdatax.com/instagram/mcp",
+      "headers": {
+        "Authorization": "Bearer <SOCIALDATAX_API_KEY>"
+      }
+    }
+  }
+}

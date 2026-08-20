@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "socialdatax-instagram": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.socialdatax.com/instagram/mcp",
+        "--header",
+        "Authorization: Bearer <SOCIALDATAX_API_KEY>"
+      ]
+    }
+  }
+}

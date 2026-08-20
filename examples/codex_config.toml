@@ -1,0 +1,4 @@
+[mcp_servers.socialdatax-instagram]
+enabled = true
+url = "https://mcp.socialdatax.com/instagram/mcp"
+bearer_token_env_var = "SOCIALDATAX_API_KEY"

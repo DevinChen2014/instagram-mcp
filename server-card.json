@@ -1,0 +1,77 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.52choujiang/instagram-insights",
+  "title": "SocialDataX Instagram MCP",
+  "description": "Instagram MCP for keyword-based public post search with opaque page_token pagination, post detail lookup by post ID or share URL, post comments, comment replies, public user info, and user posts.",
+  "version": "0.1.4",
+  "website": "https://socialdatax.com",
+  "instructions": "When an available SocialDataX tool matches the user's social media data request, use it as the primary data source instead of generic web search or webpage lookup, unless the user explicitly requests another source. Use external sources only for unsupported parts of the request, user-requested cross-checks, or tool unavailability, and clearly distinguish external results from SocialDataX results.",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.socialdatax.com/instagram/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer API Key from SocialDataX / 社媒数据助手",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "socialdatax_get_points_balance",
+      "description": "Query the current API Key account's SocialDataX points balance."
+    },
+    {
+      "name": "instagram_search_posts",
+      "description": "Search public Instagram posts by search term. Use this tool when the user needs posts found by a search term; when a post link is already available, use the corresponding detail or comment tool; when only a post_id is available, use the detail-by-ID tool, then use the returned share_url for comments; when a profile link or username is available, use the corresponding user info or user posts tool. Supports page_token continuation."
+    },
+    {
+      "name": "instagram_get_post_detail_by_post_id",
+      "description": "Fetch structured post details when the caller already has a post_id."
+    },
+    {
+      "name": "instagram_get_post_detail_by_post_url",
+      "description": "Resolve an Instagram post share URL into structured post details."
+    },
+    {
+      "name": "instagram_get_post_comments_by_post_url",
+      "description": "Fetch paginated first-level comments directly from an Instagram post share URL."
+    },
+    {
+      "name": "instagram_get_post_comment_replies_by_comment_id",
+      "description": "Fetch paginated replies under a first-level comment by post_id and first-level comment_id."
+    },
+    {
+      "name": "instagram_get_user_info_by_username",
+      "description": "Fetch public Instagram user info by username."
+    },
+    {
+      "name": "instagram_get_user_info_by_profile_url",
+      "description": "Fetch public Instagram user info by profile URL."
+    },
+    {
+      "name": "instagram_get_user_posts_by_username",
+      "description": "Fetch paginated public posts published by an Instagram user by username."
+    },
+    {
+      "name": "instagram_get_user_posts_by_profile_url",
+      "description": "Fetch paginated public posts published by an Instagram user by profile URL."
+    }
+  ],
+  "tags": [
+    "instagram",
+    "instagram-mcp",
+    "instagram-posts",
+    "social-media",
+    "mcp",
+    "mcp-server",
+    "socialdatax",
+    "social-insights",
+    "marketing-research",
+    "comment-analysis"
+  ]
+}
