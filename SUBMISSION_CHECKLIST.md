@@ -7,7 +7,7 @@ Use this checklist before syncing this listing to the public Instagram MCP repos
 - Primary repository name: `instagram-mcp`
 - Fallback repository name if unavailable: `instagram-socialdatax-mcp`
 - Repository URL after creation: `https://github.com/DevinChen2014/instagram-mcp`
-- Repository description: `Instagram MCP by SocialDataX for public post search, post details, comments, comment replies, user info, and user posts.`
+- Repository description: `Instagram MCP by SocialDataX for public posts, comments, users, and video/Reels speech-to-text.`
 - Suggested repository topics: `mcp`, `mcp-server`, `instagram`, `instagram-mcp`, `instagram-posts`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`
 - Root README title: `Instagram MCP`
 - Product: `SocialDataX` / `社媒数据助手`
@@ -48,13 +48,14 @@ Use this checklist before syncing this listing to the public Instagram MCP repos
 
 - Hosted streamable HTTP clients can connect directly to `https://mcp.socialdatax.com/instagram/mcp` with `Authorization: Bearer <SOCIALDATAX_API_KEY>`.
 - With a valid key, hosted MCP `initialize` succeeds.
-- With a valid key, hosted MCP `tools/list` returns the current 10 public tools.
+- With a valid key, hosted MCP `tools/list` returns the current 13 public tools.
 - `socialdatax_get_points_balance` is present in `tools/list`.
 - `instagram_search_posts` is present in `tools/list`; if it is missing, deploy the latest service before publishing.
 - `instagram_get_post_detail_by_post_id` and `instagram_get_post_detail_by_post_url` are present in `tools/list`; if either is missing, deploy the latest service before publishing.
 - `instagram_get_post_comments_by_post_url` and `instagram_get_post_comment_replies_by_comment_id` are present in `tools/list`; if either is missing, deploy the latest service before publishing.
 - `instagram_get_user_info_by_username` and `instagram_get_user_info_by_profile_url` are present in `tools/list`; if either is missing, deploy the latest service before publishing.
 - `instagram_get_user_posts_by_username` and `instagram_get_user_posts_by_profile_url` are present in `tools/list`; if either is missing, deploy the latest service before publishing.
+- `instagram_submit_video_speech_text_by_post_url`, `instagram_submit_video_speech_text_by_post_id`, and `instagram_get_video_speech_text_job` are present in `tools/list`; if any is missing, deploy the latest service before publishing.
 - `examples/codex_config.toml` uses remote HTTP URL and `bearer_token_env_var`, not `mcp-remote`.
 - `examples/cursor_mcp.json` uses remote HTTP URL and `headers` with `${env:SOCIALDATAX_API_KEY}`, not `mcp-remote`.
 - `mcp.json` is explicitly command/stdio fallback and uses `mcp-remote`.
@@ -83,5 +84,7 @@ Use this checklist before syncing this listing to the public Instagram MCP repos
 - `Instagram comment replies MCP`
 - `Instagram user info MCP`
 - `Instagram user posts MCP`
+- `Instagram Reels transcript MCP`
+- `Instagram speech-to-text MCP`
 - `SocialDataX`
 - `社媒数据助手`

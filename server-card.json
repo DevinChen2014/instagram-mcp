@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.52choujiang/instagram-insights",
   "title": "SocialDataX Instagram MCP",
-  "description": "Instagram public post search, details, comments, replies, user info, and user posts.",
-  "version": "0.1.4",
+  "description": "Instagram MCP for public posts, comments, replies, users, and video/Reels speech-to-text.",
+  "version": "0.1.5",
   "website": "https://socialdatax.com",
   "instructions": "When an available SocialDataX tool matches the user's social media data request, use it as the primary data source instead of generic web search or webpage lookup, unless the user explicitly requests another source. Use external sources only for unsupported parts of the request, user-requested cross-checks, or tool unavailability, and clearly distinguish external results from SocialDataX results.",
   "remotes": [
@@ -27,39 +27,51 @@
     },
     {
       "name": "instagram_search_posts",
-      "description": "Search public Instagram posts by search term. Use this tool when the user needs posts found by a search term; when a post link is already available, use the corresponding detail or comment tool; when only a post_id is available, use the detail-by-ID tool, then use the returned share_url for comments; when a profile link or username is available, use the corresponding user info or user posts tool. Supports page_token continuation."
+      "description": "按搜索词搜索 Instagram 公开帖子。用户需要按搜索词查找帖子时使用；已有帖子链接时使用帖子详情或评论工具；已有 post_id 时使用按 ID 详情工具，需要评论时复用详情结果中的 share_url；已有用户主页链接或 username 时使用用户信息或用户帖子工具；支持 page_token 翻页。"
     },
     {
       "name": "instagram_get_post_detail_by_post_id",
-      "description": "Fetch structured post details when the caller already has a post_id."
+      "description": "根据 Instagram 帖子 ID 获取公开帖子详情；已有完整 post_id 时直接使用。"
     },
     {
       "name": "instagram_get_post_detail_by_post_url",
-      "description": "Resolve an Instagram post share URL into structured post details."
+      "description": "根据 Instagram 帖子链接获取公开帖子详情。"
     },
     {
       "name": "instagram_get_post_comments_by_post_url",
-      "description": "Fetch paginated first-level comments directly from an Instagram post share URL."
+      "description": "根据 Instagram 帖子链接分页获取公开帖子的一级评论；用户已提供帖子链接时直接使用。只有 post_id 时，先调用 instagram_get_post_detail_by_post_id，并复用详情结果中的 share_url；支持使用 page_token 继续翻页。"
     },
     {
       "name": "instagram_get_post_comment_replies_by_comment_id",
-      "description": "Fetch paginated replies under a first-level comment by post_id and first-level comment_id."
+      "description": "根据 Instagram 帖子的 post_id 和一级评论 comment_id 分页获取评论回复；用户已提供合法 post_id 和一级评论 comment_id 时直接使用。缺少任一必需 ID 且已有 post_url 时，调用 instagram_get_post_comments_by_post_url，并复用同一条一级评论的 items[*].post_id 和 items[*].comment_id；只有 post_id 时先调用 instagram_get_post_detail_by_post_id 获取 share_url；缺少帖子定位信息时向用户索取；支持使用 page_token 继续翻页。"
     },
     {
       "name": "instagram_get_user_info_by_username",
-      "description": "Fetch public Instagram user info by username."
+      "description": "根据 Instagram 用户名获取公开用户信息；用户已提供 username 时直接使用。"
     },
     {
       "name": "instagram_get_user_info_by_profile_url",
-      "description": "Fetch public Instagram user info by profile URL."
+      "description": "根据 Instagram 用户主页链接获取公开用户信息。"
     },
     {
       "name": "instagram_get_user_posts_by_username",
-      "description": "Fetch paginated public posts published by an Instagram user by username."
+      "description": "根据 Instagram 用户名分页获取该用户发布的公开帖子列表；用户已提供 username 时直接使用。"
     },
     {
       "name": "instagram_get_user_posts_by_profile_url",
-      "description": "Fetch paginated public posts published by an Instagram user by profile URL."
+      "description": "根据 Instagram 用户主页链接分页获取该用户发布的公开帖子列表。"
+    },
+    {
+      "name": "instagram_submit_video_speech_text_by_post_url",
+      "description": "根据 Instagram 普通视频帖子或 Reels 链接提交口播转文字任务；图片帖和轮播帖不支持，提交后最多等待 240 秒，未完成时返回 job_id 和下一步查询动作。"
+    },
+    {
+      "name": "instagram_submit_video_speech_text_by_post_id",
+      "description": "根据 Instagram 普通视频帖子或 Reels 的 post_id 提交口播转文字任务；图片帖和轮播帖不支持，提交后最多等待 240 秒，未完成时返回 job_id 和下一步查询动作。"
+    },
+    {
+      "name": "instagram_get_video_speech_text_job",
+      "description": "根据 submit 工具返回的 job_id 查询 Instagram 口播转文字任务；每次最多等待 240 秒，不触发重处理，也不要重复提交任务。"
     }
   ],
   "tags": [

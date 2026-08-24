@@ -22,6 +22,8 @@ Common search phrases for this MCP service:
 - `Instagram 回复 MCP`
 - `Instagram 用户信息 MCP`
 - `Instagram 用户帖子 MCP`
+- `Instagram Reels transcript MCP`
+- `Instagram 口播转文字 MCP`
 - `Instagram post MCP`
 - `Instagram post research MCP`
 - `Instagram comments MCP`
@@ -38,7 +40,7 @@ Common search phrases for this MCP service:
 - Website and API Key access: <https://socialdatax.com/ai?from=github>
 - Registry name: `com.52choujiang/instagram-insights`
 - Future registry name: `com.socialdatax/instagram-insights`
-- Current public capability version: `0.1.4`
+- Current public capability version: `0.1.5`
 
 ## Platform MCP
 
@@ -54,10 +56,11 @@ Supported workflows include:
 - Search public Instagram posts by keyword; continue with the returned `next_page_token` as `page_token`.
 - Read post details when the caller already has a `post_id`.
 - Resolve an Instagram post share URL into structured post details.
-- Fetch paginated first-level comments directly from an Instagram post share URL.
-- Fetch paginated replies under a first-level comment by `post_id` and first-level `comment_id`.
+- Fetch paginated first-level comments from an Instagram post share URL; when only a `post_id` is available, first call `instagram_get_post_detail_by_post_id` and reuse the returned `share_url`.
+- Fetch paginated replies under a first-level comment by `post_id` and first-level `comment_id`; use a valid `post_id` and first-level `comment_id` supplied by the user directly. If an ID is missing and a post URL is available, call `instagram_get_post_comments_by_post_url`, then reuse `items[*].post_id` and `items[*].comment_id` from the same comment. If only `post_id` is available, first call `instagram_get_post_detail_by_post_id` and use `share_url` for comments. If neither a post URL nor `post_id` is available, ask the user for the post URL or ID.
 - Fetch public Instagram user info by `username` or profile URL.
 - Fetch paginated public posts published by an Instagram user by `username` or profile URL.
+- Submit and check speech-to-text transcript jobs for ordinary video posts and Reels; photo and carousel posts are not supported.
 
 ## Tools
 
@@ -67,12 +70,15 @@ Supported workflows include:
 | `instagram_search_posts` | Search public Instagram posts by search term. Use this tool when the user needs posts found by a search term; when a post link is already available, use the corresponding detail or comment tool; when only a `post_id` is available, use the detail-by-ID tool, then use the returned `share_url` for comments; when a profile link or username is available, use the corresponding user info or user posts tool. Supports `page_token` continuation. |
 | `instagram_get_post_detail_by_post_id` | Fetch structured post details when the caller already has a `post_id`. |
 | `instagram_get_post_detail_by_post_url` | Resolve an Instagram post share URL into structured post details. |
-| `instagram_get_post_comments_by_post_url` | Fetch paginated first-level comments directly from an Instagram post share URL. |
-| `instagram_get_post_comment_replies_by_comment_id` | Fetch paginated replies under a first-level comment by `post_id` and first-level `comment_id`. |
+| `instagram_get_post_comments_by_post_url` | Fetch paginated first-level comments from an Instagram post share URL. When only a `post_id` is available, first call `instagram_get_post_detail_by_post_id` and reuse the returned `share_url`; pass `page_token` to continue pagination. |
+| `instagram_get_post_comment_replies_by_comment_id` | Fetch paginated replies under a first-level comment by `post_id` and first-level `comment_id`. Use a valid `post_id` and first-level `comment_id` supplied by the user directly. If an ID is missing and a post URL is available, call `instagram_get_post_comments_by_post_url`, then reuse `items[*].post_id` and `items[*].comment_id` from the same comment. If only `post_id` is available, first call `instagram_get_post_detail_by_post_id` and use `share_url` for comments. If neither a post URL nor `post_id` is available, ask the user for the post URL or ID; pass `page_token` to continue pagination. |
 | `instagram_get_user_info_by_username` | Fetch public Instagram user info by username. |
 | `instagram_get_user_info_by_profile_url` | Fetch public Instagram user info by profile URL. |
 | `instagram_get_user_posts_by_username` | Fetch paginated public posts published by an Instagram user by username. |
 | `instagram_get_user_posts_by_profile_url` | Fetch paginated public posts published by an Instagram user by profile URL. |
+| `instagram_submit_video_speech_text_by_post_url` | Submit a speech-to-text transcript job for an Instagram video post or Reels URL. Photo and carousel posts are not supported. |
+| `instagram_submit_video_speech_text_by_post_id` | Submit a speech-to-text transcript job for an Instagram video post or Reels `post_id`. Photo and carousel posts are not supported. |
+| `instagram_get_video_speech_text_job` | Check the transcript job returned by an Instagram submit tool using the same `job_id`. |
 
 ## Quick Start
 
