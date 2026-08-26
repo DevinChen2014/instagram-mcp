@@ -43,7 +43,7 @@
     },
     {
       "name": "instagram_get_post_comment_replies_by_comment_id",
-      "description": "根据 Instagram 帖子的 post_id 和一级评论 comment_id 分页获取评论回复；用户已提供合法 post_id 和一级评论 comment_id 时直接使用。缺少任一必需 ID 且已有 post_url 时，调用 instagram_get_post_comments_by_post_url，并复用同一条一级评论的 items[*].post_id 和 items[*].comment_id；只有 post_id 时先调用 instagram_get_post_detail_by_post_id 获取 share_url；缺少帖子定位信息时向用户索取；支持使用 page_token 继续翻页。"
+      "description": "根据 Instagram 帖子的 post_id 和一级评论 comment_id 分页获取评论回复；用户已提供合法 post_id 和一级评论 comment_id 时直接使用。缺少任一必需 ID 且已有 post_url 时，调用 instagram_get_post_comments_by_post_url，并复用同一条一级评论的 items[*].post_id 和 items[*].comment_id；只有 post_id 时先调用 instagram_get_post_detail_by_post_id 获取 share_url，再调用 instagram_get_post_comments_by_post_url 获取目标一级评论并复用其 ID；缺少帖子定位信息时向用户索取；支持使用 page_token 继续翻页。"
     },
     {
       "name": "instagram_get_user_info_by_username",
