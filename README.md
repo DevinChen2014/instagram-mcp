@@ -40,7 +40,8 @@ Common search phrases for this MCP service:
 - Website and API Key access: <https://socialdatax.com/ai?from=github>
 - Registry name: `com.52choujiang/instagram-insights`
 - Future registry name: `com.socialdatax/instagram-insights`
-- Current public capability version: `0.1.5`
+- Current public capability version: `0.1.6` (14 tools); hosted deployment and user-search validation completed on 2026-10-08.
+- Official Registry: [`0.1.6`](https://registry.modelcontextprotocol.io/v0.1/servers/com.52choujiang%2Finstagram-insights/versions/0.1.6), published and verified active on 2026-10-08.
 
 ## Platform MCP
 
@@ -52,7 +53,8 @@ This MCP service is designed for social media content intelligence workflows. It
 
 Supported workflows include:
 
-- Query the current API Key account's SocialDataX points balance.
+- Query the current API Key account's SocialDataX points balance / 积分余额、剩余积分或点数.
+- Search Instagram users by keyword; use returned usernames or profile URLs for user details and posts.
 - Search public Instagram posts by keyword; continue with the returned `next_page_token` as `page_token`.
 - Read post details when the caller already has a `post_id`.
 - Resolve an Instagram post share URL into structured post details.
@@ -66,7 +68,8 @@ Supported workflows include:
 
 | Tool | Public purpose |
 | --- | --- |
-| `socialdatax_get_points_balance` | Query the current API Key account's SocialDataX points balance. |
+| `socialdatax_get_points_balance` | Query the current API Key account's SocialDataX points balance / 积分余额、剩余积分或点数. |
+| `instagram_search_users` | Search accounts by keyword; continue with `next_page_token`. Use returned username or profile URL for user details and posts. An unknown name is an empty string; an unknown avatar, verification status or private-account status is null. |
 | `instagram_search_posts` | Search public Instagram posts by search term. Use this tool when the user needs posts found by a search term; when a post link is already available, use the corresponding detail or comment tool; when only a `post_id` is available, use the detail-by-ID tool, then use the returned `share_url` for comments; when a profile link or username is available, use the corresponding user info or user posts tool. Supports `page_token` continuation. |
 | `instagram_get_post_detail_by_post_id` | Fetch structured post details when the caller already has a `post_id`. |
 | `instagram_get_post_detail_by_post_url` | Resolve an Instagram post share URL into structured post details. |
@@ -78,7 +81,7 @@ Supported workflows include:
 | `instagram_get_user_posts_by_profile_url` | Fetch paginated public posts published by an Instagram user by profile URL. |
 | `instagram_submit_video_speech_text_by_post_url` | Submit a speech-to-text transcript job for an Instagram video post or Reels URL. Photo and carousel posts are not supported. |
 | `instagram_submit_video_speech_text_by_post_id` | Submit a speech-to-text transcript job for an Instagram video post or Reels `post_id`. Photo and carousel posts are not supported. |
-| `instagram_get_video_speech_text_job` | Check the transcript job returned by an Instagram submit tool using the same `job_id`. |
+| `instagram_get_video_speech_text_job` | Check an Instagram transcript job using a valid user-supplied `job_id` or one returned by a submit tool. |
 
 ## Quick Start
 
