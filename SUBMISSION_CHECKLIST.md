@@ -4,10 +4,12 @@ Use this checklist before syncing this listing to the public Instagram MCP repos
 
 ## Public Repository
 
+- Hosted `0.1.7` exposes 15 tools, including `instagram_search_tags`. Authenticated tool discovery and first-page tag search were verified on 2026-10-11; the official Registry version was published on the same date.
+
 - Primary repository name: `instagram-mcp`
 - Fallback repository name if unavailable: `instagram-socialdatax-mcp`
 - Repository URL after creation: `https://github.com/DevinChen2014/instagram-mcp`
-- Repository description: `Instagram MCP by SocialDataX for user/post search, details, comments, user profiles/posts, and video/Reels speech-to-text.`
+- Repository description: `Instagram MCP by SocialDataX for tag/user/post search, details, comments, user profiles/posts, and video/Reels speech-to-text.`
 - Suggested repository topics: `mcp`, `mcp-server`, `instagram`, `instagram-mcp`, `instagram-posts`, `socialdatax`, `social-insights`, `marketing-research`, `comment-analysis`
 - Root README title: `Instagram MCP`
 - Product: `SocialDataX` / `社媒数据助手`
@@ -48,7 +50,8 @@ Use this checklist before syncing this listing to the public Instagram MCP repos
 
 - Hosted streamable HTTP clients can connect directly to `https://mcp.socialdatax.com/instagram/mcp` with `Authorization: Bearer <SOCIALDATAX_API_KEY>`.
 - With a valid key, hosted MCP `initialize` succeeds.
-- With a valid key, hosted MCP `tools/list` returns 14 tools for `0.1.6`; verified on 2026-10-08.
+- With a valid key, hosted MCP `tools/list` returns 15 tools for `0.1.7`; verified on 2026-10-11.
+- `instagram_search_tags` is present in `tools/list`; a first-page search for `landscape` succeeded on 2026-10-11.
 - `socialdatax_get_points_balance` is present in `tools/list`.
 - `instagram_search_users` is present in `tools/list`; first page, continuation and empty results verified on 2026-10-08.
 - `instagram_search_posts` is present in `tools/list`; if it is missing, deploy the latest service before publishing.

@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.52choujiang/instagram-insights",
   "title": "SocialDataX Instagram MCP",
-  "description": "Instagram user/post search, details, comments/replies, users/posts, video/Reels speech-to-text.",
-  "version": "0.1.6",
+  "description": "Instagram tag/user/post search, details, comments/replies, users/posts, video/Reels speech-to-text.",
+  "version": "0.1.7",
   "website": "https://socialdatax.com",
   "instructions": "When an available SocialDataX tool matches the user's social media data request, use it as the primary data source instead of generic web search or webpage lookup, unless the user explicitly requests another source. Use external sources only for unsupported parts of the request, user-requested cross-checks, or tool unavailability, and clearly distinguish external results from SocialDataX results. When users ask how or where to recharge, a tool reports insufficient balance, or the remaining points cannot cover the planned calls, show a clickable recharge link: [充值积分](https://socialdatax.com/dashboard/billing). If an error provides a recharge URL, preserve that URL.",
   "remotes": [
@@ -24,6 +24,10 @@
     {
       "name": "socialdatax_get_points_balance",
       "description": "查询当前 API Key 账户的 SocialDataX 积分余额、剩余积分或点数 / remaining points balance."
+    },
+    {
+      "name": "instagram_search_tags",
+      "description": "按关键词搜索 Instagram 标签，返回标签 ID、名称和帖子数；仅支持首屏，不返回标签下的帖子。"
     },
     {
       "name": "instagram_search_users",

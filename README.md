@@ -40,8 +40,8 @@ Common search phrases for this MCP service:
 - Website and API Key access: <https://socialdatax.com/ai?from=github>
 - Registry name: `com.52choujiang/instagram-insights`
 - Future registry name: `com.socialdatax/instagram-insights`
-- Current public capability version: `0.1.6` (14 tools); hosted deployment and user-search validation completed on 2026-10-08.
-- Official Registry: [`0.1.6`](https://registry.modelcontextprotocol.io/v0.1/servers/com.52choujiang%2Finstagram-insights/versions/0.1.6), published and verified active on 2026-10-08.
+- Current public capability version: `0.1.7` (15 tools), including first-page tag search; authenticated tool discovery and a tag-search call were verified on 2026-10-11.
+- Official Registry: [`0.1.7`](https://registry.modelcontextprotocol.io/v0.1/servers/com.52choujiang%2Finstagram-insights/versions/0.1.7), published on 2026-10-11.
 
 ## Platform MCP
 
@@ -70,6 +70,7 @@ Supported workflows include:
 | --- | --- |
 | `socialdatax_get_points_balance` | Query the current API Key account's SocialDataX points balance / 积分余额、剩余积分或点数. |
 | `instagram_search_users` | Search accounts by keyword; continue with `next_page_token`. Use returned username or profile URL for user details and posts. An unknown name is an empty string; an unknown avatar, verification status or private-account status is null. |
+| `instagram_search_tags` | Search tag names and post counts by keyword. First page only; does not return posts under a tag or support pagination. Available in local candidate `0.1.7`. |
 | `instagram_search_posts` | Search public Instagram posts by search term. Use this tool when the user needs posts found by a search term; when a post link is already available, use the corresponding detail or comment tool; when only a `post_id` is available, use the detail-by-ID tool, then use the returned `share_url` for comments; when a profile link or username is available, use the corresponding user info or user posts tool. Supports `page_token` continuation. |
 | `instagram_get_post_detail_by_post_id` | Fetch structured post details when the caller already has a `post_id`. |
 | `instagram_get_post_detail_by_post_url` | Resolve an Instagram post share URL into structured post details. |
